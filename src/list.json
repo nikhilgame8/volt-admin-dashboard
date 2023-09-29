@@ -1,0 +1,27 @@
+{
+    "list": [{
+            "name": "New Users",
+            "count": 23,
+            "TotalUser": 1.50,
+            "activeUser": 23
+        },
+        {
+            "name": "New Users",
+            "count": 27,
+            "TotalUser": 1.60,
+            "activeUser": 23
+        },
+        {
+            "name": "New Users",
+            "count": 23,
+            "TotalUser": 1.76,
+            "activeUser": 23
+        },
+        {
+            "name": "New Users",
+            "count": 23,
+            "TotalUser": 1.76,
+            "activeUser": 23
+        }
+    ]
+}
