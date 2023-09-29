@@ -1,118 +1,144 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+// import Layout from "../../Components/Layout";
+// import Header from "../../Components/Header";
+// import DashboardTab from "../../Components/DashboardTab";
+// import { useRouter } from "next/router";
+// import jsCookie from "js-cookie";
+// import { useEffect, useState } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+import Layout from "@/components/Layout";
+import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import {
+  ChartBarSquareIcon,
+  Cog6ToothIcon,
+  FolderIcon,
+  GlobeAltIcon,
+  ServerIcon,
+  SignalIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import List from '@/components/Lists'
 
-export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+const navigation = [
+  { name: 'Overview', href: '#', icon: FolderIcon, current: false },
+  { name: 'Deployments', href: '#', icon: ServerIcon, current: true },
+  { name: 'Activity', href: '#', icon: SignalIcon, current: false },
+  { name: 'Domains', href: '#', icon: GlobeAltIcon, current: false },
+  { name: 'Usage', href: '#', icon: ChartBarSquareIcon, current: false },
+  { name: 'Settings', href: '#', icon: Cog6ToothIcon, current: false },
+]
+const teams = [
+  { id: 1, name: 'Planetaria', href: '#', initial: 'P', current: false },
+  { id: 2, name: 'Protocol', href: '#', initial: 'P', current: false },
+  { id: 3, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
+]
+const secondaryNavigation = [
+  { name: 'Overview', href: '#', current: true },
+  { name: 'Activity', href: '#', current: false },
+  { name: 'Settings', href: '#', current: false },
+  { name: 'Collaborators', href: '#', current: false },
+  { name: 'Notifications', href: '#', current: false },
+]
+const stats = [
+  { name: 'Number of deploys', value: '405' },
+  { name: 'Average deploy time', value: '3.65', unit: 'mins' },
+  { name: 'Number of servers', value: '3' },
+  { name: 'Success rate', value: '98.5%' },
+]
+const activityItems = [
+  {
+    user: {
+      name: 'Michael Foster',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    commit: '2d89f0c8',
+    branch: 'main',
+    status: 'Completed',
+    duration: '25s',
+    date: '45 minutes ago',
+    dateTime: '2023-01-23T11:00',
+  },
+  // More items...
+]
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
 }
+
+const index = () => {
+
+  return (
+    <Layout>
+
+      <div className="xl:pl-72">
+        {/* Sticky search header */}        
+
+        <main>
+          <header>
+            {/* Secondary navigation */}
+            <nav className="flex overflow-x-auto border-b border-white/10 py-4">
+              <ul
+                role="list"
+                className="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8"
+              >
+                {secondaryNavigation.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.href} className={item.current ? 'text-indigo-400' : ''}>
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Heading */}
+            <div className="flex flex-col items-start justify-between gap-x-8 gap-y-4 bg-gray-700/10 px-4 py-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+              <div>
+                <div className="flex items-center gap-x-3">
+                  <div className="flex-none rounded-full bg-green-400/10 p-1 text-green-400">
+                    <div className="h-2 w-2 rounded-full bg-current" />
+                  </div>
+                  <h1 className="flex gap-x-3 text-base leading-7">
+                    <span className="font-semibold text-white">Planetaria</span>
+                    <span className="text-gray-600">/</span>
+                    <span className="font-semibold text-white">mobile-api</span>
+                  </h1>
+                </div>
+                <p className="mt-2 text-xs leading-6 text-gray-400">Deploys from GitHub via main branch</p>
+              </div>
+              <div className="order-first flex-none rounded-full bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30 sm:order-none">
+                Production
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 bg-gray-700/10 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat, statIdx) => (
+                <div
+                  key={stat.name}
+                  className={classNames(
+                    statIdx % 2 === 1 ? 'sm:border-l' : statIdx === 2 ? 'lg:border-l' : '',
+                    'border-t border-white/5 py-6 px-4 sm:px-6 lg:px-8'
+                  )}
+                >
+                  <p className="text-sm font-medium leading-6 text-gray-400">{stat.name}</p>
+                  <p className="mt-2 flex items-baseline gap-x-2">
+                    <span className="text-4xl font-semibold tracking-tight text-white">{stat.value}</span>
+                    {stat.unit ? <span className="text-sm text-gray-400">{stat.unit}</span> : null}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </header>
+
+          {/* Activity list */}
+          <List type={"allPolls"} activityItems={activityItems} />
+        </main>
+      </div>
+    </Layout>
+  );
+};
+
+export default index;
