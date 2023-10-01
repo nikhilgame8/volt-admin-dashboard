@@ -30,7 +30,7 @@ const SideNav = () => {
   };
 
   useEffect(() => {
-    
+
     window.addEventListener("mousemove", handleShowSideBar);
     return () => {
       window.removeEventListener("mousemove", handleShowSideBar);
@@ -92,7 +92,7 @@ const SideNav = () => {
             />
           </NavLink>
           <div className="toggle-sidebar-btn" onClick={handleToggle}>
-          {/* already commented */}
+            {/* already commented */}
             {/* <div className="toggle-sidebar-btn"> */}
             {/* {toggleBar ? <img src={removeDotButton} alt="" /> : <img src = {dotButton} alt="dot-button"/>} */}
 
@@ -127,7 +127,7 @@ const SideNav = () => {
             </a>
             <ul
               id="componentsA-nav"
-              className="nav-content collapse show"
+              className="nav-content  show"
               data-bs-parent="#sidebar-nav"
             >
               <li>
@@ -179,7 +179,7 @@ const SideNav = () => {
             </a>
             <ul
               id="ComponentsB-nav"
-              className="nav-content collapse show"
+              className="nav-content show"
               data-bs-parent="#sidebar-nav"
             >
               <li>

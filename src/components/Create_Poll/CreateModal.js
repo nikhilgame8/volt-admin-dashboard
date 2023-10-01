@@ -11,6 +11,7 @@ import DateTimeIcon from "../../assets/img/poll-selection-icons/date-time-icon.s
 import RatingIcon from "../../assets/img/poll-selection-icons/rating-icon.svg";
 import MultiLine from "../../assets/img/poll-selection-icons/multi-line-icon.svg";
 import Tags from "@yaireo/tagify/dist/react.tagify";
+import { RiCloseCircleFill } from "react-icons/ri";
 // import "@yaireo/tagify/dist/tagify.css" // Tagify CSS
 // import Tagify from "@yaireo/tagify";
 
@@ -27,7 +28,7 @@ const CreateModal = ({
   handleAddDropdownSelection
 }) => {
   const tagSuggestions = [
-    "poll Questions","Simple", "Multiple", "Dropdown", "Yes/No"
+    "poll Questions", "Simple", "Multiple", "Dropdown", "Yes/No"
     // Add more items as needed
   ];
 
@@ -36,7 +37,7 @@ const CreateModal = ({
   const [showPollNaming, setShowPollNaming] = useState(true);
   const [pollName, setPollName] = useState("");
   const [tags, setTags] = useState([]);
-  
+
   console.log(true);
   const handleDialogBox = () => {
     setShowDialogBox(true);
@@ -114,14 +115,13 @@ const CreateModal = ({
         data-bs-keyboard="false"
         tabIndex="-1"
         aria-labelledby="createPollLabel"
-        // aria-hidden="true"
+      // aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
           {showPollNaming && (
             <div
-              className={`modal-content ${
-                showPollNaming ? "poll-naming" : "hidden"
-              }`}
+              className={`modal-content ${showPollNaming ? "poll-naming" : "customHidden"
+                }`}
             >
               <div className="modal-header">
                 <h5 className="modal-title" id="createPollLabel">
@@ -129,11 +129,11 @@ const CreateModal = ({
                 </h5>
                 <button
                   type="button"
-                  className="btn-close"
+                  // className="btn-close"
                   data-bs-dismiss="modal"
                   onClick={handleClose}
                   aria-label="Close"
-                ></button>
+                > <RiCloseCircleFill className="w-10 h-10" /> </button>
               </div>
               <div className="modal-body">
                 <div className="first-field mb-4">
@@ -198,9 +198,9 @@ const CreateModal = ({
                         onKeyUp={(e) => (e.key === `Enter` ? addTags(e) : null)}
                       />
                       <datalist id="tagSuggestions">
-                      {tagSuggestions.map((tag, index)=>(
-                        <option key={index} onKeyUp={(e) => (e.key === `Enter` ? addTags(e) : null)} value={tag}/>
-                      ))}
+                        {tagSuggestions.map((tag, index) => (
+                          <option key={index} onKeyUp={(e) => (e.key === `Enter` ? addTags(e) : null)} value={tag} />
+                        ))}
                       </datalist>
                       {/* <i className="fa-solid fa-plus"></i>
                       <span>Add More</span> */}
@@ -211,7 +211,7 @@ const CreateModal = ({
               <div className="modal-footer">
                 <button
                   type="submit"
-                  className="create-poll-btn"
+                  className="create-poll-btn bg-[#110736]"
                   id="poll-naming-continue"
                   onClick={handleDialogBox}
                 >
@@ -224,9 +224,8 @@ const CreateModal = ({
           {/* <!-- Poll Type Selection on Continue --> */}
           {showDialogBox && (
             <div
-              className={`modal-content ${
-                showDialogBox ? "poll-selection" : "hidden"
-              }`}
+              className={`modal-content ${showDialogBox ? "poll-selection" : "customHidden"
+                }`}
             >
               <div className="modal-header">
                 <h5 className="modal-title" id="createPollLabel">
@@ -238,7 +237,7 @@ const CreateModal = ({
                   data-bs-dismiss="modal"
                   onClick={handleClose}
                   aria-label="Close"
-                ></button>
+                > </button>
               </div>
               <div className="modal-body">
                 {/* <!-- Selection Polls --> */}

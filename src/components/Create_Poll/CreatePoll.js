@@ -311,8 +311,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
               <div className="tab-pane active show" id="tab-1">
                 {/* <!-- Question Section --> */}
 
-                <div className="question-area w-100 d-flex justify-content-between">
-                  <div className="left-side">
+                <div className="question-area h-full lg:h-[70vh] w-100 lg:flex gap-8 flex-row space-y-8 space-y-0 items-start justify-between">
+                  <div className="left-side lg:!w-[25rem] !w-full">
                     <div className="add-question d-flex justify-content-between align-items-center">
                       <h4>Poll Questions</h4>
                       <button
@@ -341,8 +341,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
 
                   {/* <!-- Create Poll Section --> */}
 
-                  <div className="create-poll-mid-container ps-3">
-                    <div className="create-poll-container">
+                  <div className="create-poll-mid-container m-0 lg:m-8">
+                    <div className="create-poll-container h-full lg:h-[70vh]">
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="create-poll-question d-flex justify-content-center flex-column">
@@ -684,7 +684,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
 
                   {/* <!-- Setting --> */}
                   <div>
-                    <div className="card settings-card">
+                    <div className="card settings-card !w-full lg:!w-[25rem]">
                       <div className="card-header text-center">
                         <h4>Settings</h4>
                       </div>
@@ -772,7 +772,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                     </div>
 
                     {/* Category */}
-                    <div className="card settings-card mt-4">
+                    <div className="card settings-card !w-full lg:!w-[25rem] mt-4">
                       <div className="card-header text-center">
                         <h4>Category</h4>
                       </div>
