@@ -13,7 +13,7 @@ const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-ros
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
-  }
+}
 
 const List = (props) => {
     const dateHandler = (date) => {
@@ -205,6 +205,56 @@ const List = (props) => {
                                         </td>
                                     </tr>
                                 ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            case "recentActivity":
+                return (
+                    <div className="mt-6 relative overflow-x-auto">
+                        <table className="w-full text-sm text-left text-gray-400">
+                            <thead className="text-xs  uppercase bg-gray-700 text-gray-400">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3">
+                                        Date/ Time
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Admin/ User ID
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Activity Type
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Activity Description
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Poll/ User Associated
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+                                        <tr key={index} className="border-b bg-gray-800 border-gray-700">
+                                            <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
+                                                12-June-2023 at 4:30 PM
+                                            </th>
+                                            <td className="px-6 py-4">
+                                                Anurag
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                Poll Creation
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                "Ab kya krana chahiye Poll created"
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                Poll :- 4353453
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
                             </tbody>
                         </table>
                     </div>

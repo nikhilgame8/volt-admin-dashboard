@@ -141,33 +141,65 @@ const Layout = ({ children }) => {
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            {navigation.map((item) => (
-                              <li key={item.name}>
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-gray-800 text-white'
-                                      : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}
-                                >
-                                  <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                                  {item.name}
-                                </a>
-                                <ul className='pl-8 flex flex-col gap-y-7 py-4'>
-                                  {
-                                    item?.subMenu?.map((subItem, index) => (
-                                      <li key={index} className={(true ? 'bg-gray-800 text-white'
-                                        : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                                        'font-normal flex items-center gap-x-3 cursor-pointer')}>
+                          {navigation.map((item, index) => (
+                      <>{
+                        item.subMenu ?
+                          <li key={item.name}>
+                            <div
+                              onClick={() => handleNavigationClick(index)}
+                              className={classNames(
+                                item.current
+                                  ? 'bg-gray-800 text-white'
+                                  : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                                'group flex cursor-pointer gap-x-3 rounded-md p-2 items-center justify-between text-sm leading-6 font-semibold'
+                              )}
+                            >
+                              <div className='flex gap-x-3 items-center'>
+                                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                                {item.name}
+                              </div>
+                              <ChevronUpIcon className={classNames(
+                                item.current ?
+                                  "h-4 w-4 shrink-0 rotate-180 transition-all " :
+                                  "h-4 w-4 shrink-0 transition-all"
+                              )} />
+                            </div>
+                            {
+                              <ul className={classNames(item.current ? 'pl-8 flex flex-col gap-y-2 py-4 slide-down h-full' : 'pl-8 flex-col h-0 slide-up gap-y-2 py-4 hidden')}>
+                                {
+                                  item?.subMenu?.map((subItem, index) => (
+                                    <li key={index}>
+                                      <a href={subItem.href}
+                                        className={classNames(router.asPath === subItem.href ? 'bg-gray-800 text-white'
+                                          : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                                          'font-normal p-2 rounded-md flex items-center gap-x-3 cursor-pointer')}>
                                         <subItem.icon className="h-4 w-4 shrink-0" aria-hidden="true" /> {subItem.name}
-                                      </li>
-                                    ))
-                                  }
-                                </ul>
-                              </li>
-                            ))}
+                                      </a>
+                                    </li>
+                                  ))
+                                }
+                              </ul>
+                            }
+                          </li> :
+                          <li key={item.name}>
+                            <a
+                              href={item.href}
+                              className={classNames(
+                                item.current
+                                  ? 'bg-gray-800 text-white'
+                                  : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                                'group flex gap-x-3 rounded-md p-2 items-center justify-between text-sm leading-6 font-semibold'
+                              )}
+                            >
+                              <div className='flex gap-x-3 items-center'>
+                                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                                {item.name}
+                              </div>
+                            </a>
+                          </li>
+                      }
+                      </>
+                    ))}
                           </ul>
                         </li>
                         {/* <li>

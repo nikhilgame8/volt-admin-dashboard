@@ -20,6 +20,28 @@ import {
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import List from '@/components/Lists'
 
+// import PieChart from "@/components/Charts/PieChart";
+import dynamic from "next/dynamic";
+import Heading from "@/components/Heading";
+const PieChart = dynamic(() => import("@/components/Charts/PieChart"), {
+  ssr: false,
+})
+const DemoGauge = dynamic(() => import("@/components/Charts/Meter").then(module => module.DemoGauge), {
+  ssr: false
+});
+const ColumnPlot = dynamic(() => import("@/components/Charts/ColumnPlot"), {
+  ssr: false,
+})
+const LinePlot = dynamic(() => import("@/components/Charts/LineDataPlot"), {
+  ssr: false,
+})
+const Map = dynamic(() => import("@/components/Charts/IndiaMap"), {
+  ssr: false,
+})
+const PerformanceChart = dynamic(() => import("@/components/Charts/Perfomance"), {
+  ssr: false,
+})
+
 const navigation = [
   { name: 'Overview', href: '#', icon: FolderIcon, current: false },
   { name: 'Deployments', href: '#', icon: ServerIcon, current: true },
@@ -73,7 +95,7 @@ const index = () => {
     <Layout>
 
       <div className="xl:pl-72">
-        {/* Sticky search header */}        
+        {/* Sticky search header */}
 
         <main>
           <header>
@@ -109,7 +131,7 @@ const index = () => {
                 <p className="mt-2 text-xs leading-6 text-gray-400">Deploys from GitHub via main branch</p>
               </div>
               <div className="order-first flex-none rounded-full bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30 sm:order-none">
-                Production
+                Creat Poll
               </div>
             </div>
 
@@ -133,8 +155,313 @@ const index = () => {
             </div>
           </header>
 
-          {/* Activity list */}
-          <List type={"allPolls"} activityItems={activityItems} />
+          <div className="graph-charts mt-5">
+            <div className="grid grid-cols-4 bg-gray-900">
+              <div className="col-span-2">
+                <div>
+                  <div className="card-body">
+                    <h2 className="card-title">Todays polls live stats</h2>
+                    <hr className="border" />
+                    <div className="chart-img text-center img-fluid charts">
+                      <div className="w-100 text-start">
+                        <h4 className="">
+                          What is you favourite Icecream flavour ?
+                        </h4>
+                      </div>
+                      <PieChart />
+                      {/* <img
+                        src={PieChart}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-1">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Todays Completion Rate</h2>
+                    <hr className="border" />
+                    {/* <h4 className="">Completion Rate:</h4> */}
+                    <div className="chart-img text-center charts">
+                      <DemoGauge className=" img-fluid" />
+
+                      {/* <img
+                        src={DemoChartImg2}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-1">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Top Age</h2>
+                    <hr className="border" />
+                    <div className="chart-img text-center charts">
+                      <ColumnPlot />
+                      {/* <img
+                        src={DemoChartImg3}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- End First Row --> */}
+
+              <div className="col-span-2">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Todays Votes Over Time</h2>
+                    <hr className="border" />
+                    <div className="chart-img text-center charts">
+                      <LinePlot />
+                      {/* <img
+                        src={DemoChartImg2}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-1">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Votes by Location</h2>
+                    <hr className="border" />
+                    {/* <div className="chart-img text-center"> */}
+                    <div className="chart-img text-start votebylocation scroll">
+                      <p>Total Location of votes</p>
+                      <h2>26</h2>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Ludhiana <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Pune <span>(Maharashtra)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Delhi <span>(India)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">Chandigarh</p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Dehradun <span>(Uttarakhand)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Jalandhar <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Delhi <span>(India)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">Chandigarh</p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Dehradun <span>(Uttarakhand)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Jalandhar <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Delhi <span>(India)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">Chandigarh</p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Dehradun <span>(Uttarakhand)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Jalandhar <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Jalandhar <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-2 mb-2">
+                        <div className="point"></div>
+                        <p className="m-0">
+                          Jalandhar <span>(Punjab)</span>
+                        </p>
+                      </div>
+                      {/* <img
+                        src={DemoChart}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-1">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Votes by Area</h2>
+                    <hr className="border" />
+                    <div className="chart-img text-center charts">
+                      <Map />
+                      {/* <img
+                        src={DemoChartImg2}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* <!-- End Second Row --> */}
+
+              <div className="col-span-2">
+                <div className="card">
+                  <div className="card-body">
+                    <h2 className="card-title">Performance Over Days</h2>
+                    <hr className="border" />
+                    <div className="chart-img text-center charts">
+                      <PerformanceChart />
+                      {/* <img
+                        src={DemoChartImg2}
+                        alt="chart-img"
+                        className="img-fluid"
+                      /> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-2">
+                <div className="card trending-polls overflow-auto">
+                  {/* <!-- <div className="filter">
+                    <a className="icon" href='/' data-bs-toggle="dropdown"
+                      ><i className="bi bi-three-dots"></i
+                    ></a>
+                    <ul
+                      className="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                    >
+                      <li className="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+
+                      <li><a className="dropdown-item" href='/'>Today</a></li>
+                      <li><a className="dropdown-item" href='/'>This Month</a></li>
+                      <li><a className="dropdown-item" href='/'>This Year</a></li>
+                    </ul>
+                  </div> --> */}
+
+                  <div className="card-body">
+                    <div className="card-title-header d-flex justify-content-between align-items-center">
+                      <h2 className="card-title">Trending Polls</h2>
+                      <a href="/" className="">
+                        View All
+                      </a>
+                    </div>
+
+                    <table className="table datatable mt-4">
+                      <thead>
+                        <tr>
+                          <th scope="col">Poll Name</th>
+                          <th scope="col">
+                            Votes <i className="fa-solid fa-caret-up"></i>
+                          </th>
+                          <th scope="col">
+                            Reaches <i className="fa-solid fa-caret-up"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="border-top-0">
+                        <tr>
+                          <td>First Poll Name</td>
+                          <td>4563</td>
+                          <td>9834</td>
+                        </tr>
+
+                        <tr>
+                          <td>Second Poll Name</td>
+                          <td>8763</td>
+                          <td>28656</td>
+                        </tr>
+
+                        <tr>
+                          <td>Third Poll Name</td>
+                          <td>35829</td>
+                          <td>52036</td>
+                        </tr>
+
+                        <tr>
+                          <td>Forth Poll Name</td>
+                          <td>8923</td>
+                          <td>17830</td>
+                        </tr>
+
+                        <tr>
+                          <td>Fifth Poll Name</td>
+                          <td>62891</td>
+                          <td>97269</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              {/* <!-- End Third Row --> */}
+
+              <div className="col-span-4">
+                <div className="border-t border-white/10 pt-11">
+                  <Heading type="headingh2ViewMore" />
+                  <List type={"recentActivity"} activityItems={activityItems} />
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </Layout>
