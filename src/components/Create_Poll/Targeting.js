@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Questions from "./Questions";
 
-const Targeting = ({targettingQuestions}) => {
+const Targeting = ({ targettingQuestions }) => {
 
   const tagSuggestion = [
-    'Lucknow','Pune','Haryana','Lucknow']
+    'Lucknow', 'Pune', 'Haryana', 'Lucknow']
 
   const geologicalCriteria = [
     { name: "Country", selected: false },
     { name: "Region/State", selected: false },
     { name: "City", selected: true },
   ];
-  
+
   const maritalStatus = [
     { name: "Gender", selected: false },
     { name: "Age", selected: false },
@@ -32,14 +32,14 @@ const Targeting = ({targettingQuestions}) => {
   ];
 
   const tagSuggestionOfDemographicCriteria = [
-    {name: 'married'},
-    {name: 'helloMarried'},
-    {name: 'criteria'},
-    {name: 'double-married'},
+    { name: 'married' },
+    { name: 'helloMarried' },
+    { name: 'criteria' },
+    { name: 'double-married' },
   ]
 
   // console.log(targettingQuestions)
-  
+
   const TagifySuggestions = ["Banglore", "Pune", "Delhi"];
   const [selectedCriteria, setSelectedCriteria] = useState(geologicalCriteria);
   const [selectedTagify, setSelectedTagify] = useState([]);
@@ -54,7 +54,7 @@ const Targeting = ({targettingQuestions}) => {
     updatedCriteria[index].selected = !updatedCriteria[index].selected;
     setSelectedCriteria(updatedCriteria);
   };
-  
+
   //Handle Demographic Criteria
   const handleDemographicCriteria = (index) => {
     const updatedGeologicalCriteria = [...maritalStatusCriteria];
@@ -63,43 +63,43 @@ const Targeting = ({targettingQuestions}) => {
   };
 
   const addTags = (e) => {
-    if(e.target.value !== "" && e.target.value !== " "){
+    if (e.target.value !== "" && e.target.value !== " ") {
       setTags([...tags, e.target.value])
       e.target.value = ""
     }
   }
 
-  const handleRecommendedTagClick = (tag,index) => {
+  const handleRecommendedTagClick = (tag, index) => {
     const updatedCriteria = [...selectedCriteria];
-  updatedCriteria[index].tags.push(tag);
-  setTags(updatedCriteria);
+    updatedCriteria[index].tags.push(tag);
+    setTags(updatedCriteria);
 
   }
-  
+
   const addDemographicTags = (e) => {
-    if(e.target.value !== "" && e.target.value !== " "){
+    if (e.target.value !== "" && e.target.value !== " ") {
       setSelectDemographicTags([...selectDemographicTags, e.target.value])
       e.target.value = ""
     }
   }
 
   const handleDemographicTagify = (indexTo) => {
-    setSelectDemographicTags(selectDemographicTags.filter((_, index) => 
+    setSelectDemographicTags(selectDemographicTags.filter((_, index) =>
       index !== indexTo
-      ))
+    ))
   }
   const handleTagify = (indexTo) => {
-    setTags(tags.filter((_, index) => 
+    setTags(tags.filter((_, index) =>
       index !== indexTo
-      ))
+    ))
   }
-  
+
 
   return (
     <div>
-      <div className="question-area w-100 d-flex justify-content-between">
-        <div className="left-side">
-          <div className="add-question d-flex justify-content-between align-items-center">
+      <div className="question-area w-100 lg:flex space-y-8 lg:space-y-0 justify-between">
+        <div className="left-side lg:!w-[25rem] !w-full">
+          <div className="add-question flex justify-between align-items-center">
             <h4>Poll Questions</h4>
             {/* <div className="plus-btn">
                       <i className="fa-solid fa-plus"></i>
@@ -132,10 +132,10 @@ const Targeting = ({targettingQuestions}) => {
               <i className="fa-solid fa-ellipsis-vertical"></i>
             </div>
           </div> */}
-          <Questions/>
+          <Questions />
         </div>
 
-        <div className="target-criteria-container">
+        <div className="target-criteria-container w-full lg:ml-8 lg:w-[25rem]">
           <div className="criteria-content">
             <div className="criteria d-flex flex-column gap-3">
               <h4>Geolocation criteria</h4>
@@ -151,16 +151,17 @@ const Targeting = ({targettingQuestions}) => {
                 </div>
               ))}
             </div>
-             
+
             <div className="criteria d-flex flex-column gap-3 mt-5">
               <h4>Demographic criteria</h4>
-              {maritalStatusCriteria.map((item, index)=>{
-                return(
-                <div className="option" key={index}>
-                <input type="checkbox" checked={item.selected} onChange={() => handleDemographicCriteria(index)}/>
-                <label htmlFor="checkbox">{item.name}</label>
-              </div>
-              )})}
+              {maritalStatusCriteria.map((item, index) => {
+                return (
+                  <div className="option" key={index}>
+                    <input type="checkbox" checked={item.selected} onChange={() => handleDemographicCriteria(index)} />
+                    <label htmlFor="checkbox">{item.name}</label>
+                  </div>
+                )
+              })}
               {/* <div className="option">
                 <input type="checkbox" />
                 <label htmlFor="checkbox">Age</label>
@@ -217,9 +218,9 @@ const Targeting = ({targettingQuestions}) => {
           </div>
         </div>
 
-        <div className="targeting-content">
-          <div className="toggle-target-box w-100 d-flex justify-content-between">
-            <div className="toggle-container d-flex flex-column">
+        <div className="targeting-content ">
+          <div className="toggle-target-box  ps-8 pe-8 w-100 sm:flex justify-between">
+            <div className="toggle-container flex flex-col">
               <div className="toggle-box">
                 <span>Advance Poll</span>
                 <div className="toggle">
@@ -235,7 +236,7 @@ const Targeting = ({targettingQuestions}) => {
                 </div>
               </div>
             </div>
-            <div className="toggle-container d-flex flex-column">
+            <div className="toggle-container flex flex-col">
               <div className="toggle-box d-flex align-items-center">
                 <span>Number of responses : </span>
                 <span className="nor-type ms-2">
@@ -252,7 +253,7 @@ const Targeting = ({targettingQuestions}) => {
             </div>
           </div>
 
-          <div className="demo-container w-100 d-flex flex-column gap-4">
+          <div className="demo-container w-100 d-flex  lg:ps-8 lg:pe-8 flex-column gap-4">
             {/* <!-- <div className="row">
                       <div className="col">
                         <div className="card">
@@ -473,26 +474,26 @@ const Targeting = ({targettingQuestions}) => {
                     </div>
                     {/* {selectedTagify.map((option, index) => ( */}
 
-                    
-                      <div
-                        className="selected-options-container d-flex align-items-center flex-wrap gap-3 mt-4"
-                        key={index}
-                      >
-                        {tags.map((tag, index)=>(
-                          <div className="selected-option" key={index}>
+
+                    <div
+                      className="selected-options-container d-flex align-items-center flex-wrap gap-3 mt-4"
+                      key={index}
+                    >
+                      {tags.map((tag, index) => (
+                        <div className="selected-option" key={index}>
                           <p>{tag}</p>
-                          <i className="fa-solid fa-xmark" onClick={()=>handleTagify(index)}></i>
+                          <i className="fa-solid fa-xmark" onClick={() => handleTagify(index)}></i>
                         </div>
-                          ))}
-                      </div>
+                      ))}
+                    </div>
                     {/* ))} */}
 
                     <div className="search-input mt-4">
-                      <input type="text" list="tagSuggestions" placeholder="Search for City" onKeyUp={e=>( e.key === 'Enter' ? addTags(e) : null )}/>
+                      <input type="text" list="tagSuggestions" placeholder="Search for City" onKeyUp={e => (e.key === 'Enter' ? addTags(e) : null)} />
                       <datalist id="tagSuggestions">
-                          {tagSuggestion.map((tag, index)=>(
-                             <option key={index} value={tag} onClick={()=> handleRecommendedTagClick(tag,index)} ></option>
-                             ))}
+                        {tagSuggestion.map((tag, index) => (
+                          <option key={index} value={tag} onClick={() => handleRecommendedTagClick(tag, index)} ></option>
+                        ))}
                       </datalist>
                     </div>
                   </div>
@@ -500,37 +501,39 @@ const Targeting = ({targettingQuestions}) => {
               }
             })}
 
-            {maritalStatusCriteria.map((items,index)=>{
-              if(items.selected){
-              return(
-              <div className="card" key={index}>
-              <div className="heading d-flex justify-content-between align-items-center">
-                <h4>{items.name}</h4>
-                <i className="fa-solid fa-xmark" onClick={()=>handleDemographicCriteria(index)}></i>
-              </div>
-              <div className="selected-options-container d-flex align-items-center flex-wrap gap-3 mt-4">
-              {selectDemographicTags.map((item, index)=>{
-                return(
-                <div className="selected-option">
-                  <p>{item}</p>
-                  <i className="fa-solid fa-xmark" onClick={()=>handleDemographicTagify(index)}></i>
+            {maritalStatusCriteria.map((items, index) => {
+              if (items.selected) {
+                return (
+                  <div className="card" key={index}>
+                    <div className="heading d-flex justify-content-between align-items-center">
+                      <h4>{items.name}</h4>
+                      <i className="fa-solid fa-xmark" onClick={() => handleDemographicCriteria(index)}></i>
+                    </div>
+                    <div className="selected-options-container d-flex align-items-center flex-wrap gap-3 mt-4">
+                      {selectDemographicTags.map((item, index) => {
+                        return (
+                          <div className="selected-option">
+                            <p>{item}</p>
+                            <i className="fa-solid fa-xmark" onClick={() => handleDemographicTagify(index)}></i>
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <div className="search-input mt-4">
+                      <input type="text" list="tagSuggestions " placeholder="Search for Marital Status" onKeyUp={e => (e.key === 'Enter' ? addDemographicTags(e) : null)} />
+                      <datalist id='tagSuggestions'>
+                        {
+                          tagSuggestionOfDemographicCriteria.map((tag, index) => (
+                            <option key={index} onKeyUp={e => e.key === 'Enter' ? addDemographicTags(e) : null} value={tag}></option>
+                          ))
+                        }
+                      </datalist>
+                    </div>
                   </div>
                 )
-              })}
-              </div>
-
-              <div className="search-input mt-4">
-                <input type="text" list="tagSuggestions " placeholder="Search for Marital Status" onKeyUp={e=>(e.key === 'Enter' ? addDemographicTags(e) : null)}/>
-                <datalist id='tagSuggestions'>
-                  {
-                    tagSuggestionOfDemographicCriteria.map((tag, index)=>(
-                      <option key={index} onKeyUp={e=> e.key === 'Enter' ? addDemographicTags(e) : null} value={tag}></option>
-                    ))
-                  }
-                </datalist>
-              </div>
-            </div>
-          )}})}
+              }
+            })}
             {/* <div className="card">
               <div className="heading d-flex justify-content-between align-items-center">
                 <h4>Marital Status</h4>

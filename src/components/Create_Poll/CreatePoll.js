@@ -311,7 +311,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
               <div className="tab-pane active show" id="tab-1">
                 {/* <!-- Question Section --> */}
 
-                <div className="question-area h-full lg:h-[70vh] w-100 lg:flex gap-8 flex-row space-y-8 space-y-0 items-start justify-between">
+                <div className="question-area h-full lg:h-[70vh] w-100 lg:flex gap-8 flex-row space-y-8 lg:space-y-0 items-start justify-between">
                   <div className="left-side lg:!w-[25rem] !w-full">
                     <div className="add-question d-flex justify-content-between align-items-center">
                       <h4>Poll Questions</h4>
@@ -341,10 +341,10 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
 
                   {/* <!-- Create Poll Section --> */}
 
-                  <div className="create-poll-mid-container m-0 lg:m-8">
+                  <div className="create-poll-mid-container mt-8 mx-0 mb-0 lg:m-8">
                     <div className="create-poll-container h-full lg:h-[70vh]">
                       <div className="row">
-                        <div className="col-lg-6">
+                        <div className="col-sm-6">
                           <div className="create-poll-question d-flex justify-content-center flex-column">
                             {/* other */}
                             {other && (
@@ -655,7 +655,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                             )}
                           </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-sm-6">
                           <div className="image-banner">
                             {/* <div className="iphone-image"></div> */}
                             <img
