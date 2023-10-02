@@ -11,7 +11,7 @@ import axios from "axios";
 
 // import '../../css/scss/table.scss'
 
-const AllPolls = ({loader}) => {
+const AllPolls = ({ loader }) => {
   // const item = [
   //   {
   //     index: 0,
@@ -98,13 +98,13 @@ const AllPolls = ({loader}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [moreOptions, setMoreOptions] = useState(false); // Show More Options
-  const[currentOpenMoreOptions, setCurrentOpenMoreOptions] = useState(false)
+  const [currentOpenMoreOptions, setCurrentOpenMoreOptions] = useState(false)
 
   //sort Usestate
   const [sortBy, setSortBy] = useState({ column: '', order: '' });
 
 
-  const fetchData = () =>{
+  const fetchData = () => {
     axios
       .get(`https://64b52f36f3dbab5a95c6e198.mockapi.io/filterData`)
       .then((res) => {
@@ -168,16 +168,16 @@ const AllPolls = ({loader}) => {
   //Targeting Pagination
 
   // GO to next Page by clicking on next
-  const handleNextPage = () =>{
+  const handleNextPage = () => {
     setCurrentPage(nextPage => nextPage + 1)
   }
   // GO to previous Page by clicking on previous
-  const handlePreviousPage = () =>{
+  const handlePreviousPage = () => {
     setCurrentPage(prevPage => prevPage - 1)
   }
 
   //select
-  const handleSelect = (event) =>{
+  const handleSelect = (event) => {
     console.log(event.key)
   }
 
@@ -187,8 +187,8 @@ const AllPolls = ({loader}) => {
   };
 
   const filteredData = data.filter((item) =>
-  item.title.toLowerCase().includes(searchQuery.toLowerCase())
-);
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const pageNumber = [];
   const totalPosts = filteredData.length;
@@ -231,51 +231,51 @@ const AllPolls = ({loader}) => {
     handleReset()
     console.log(currentOpenMoreOptions)
     console.log(moreOptions)
-  
-    if(currentOpenMoreOptions){
+
+    if (currentOpenMoreOptions) {
       // handleReset()
-    setCurrentOpenMoreOptions(false)
-    
-    if(moreOptions[id]){
-      handleReset()
+      setCurrentOpenMoreOptions(false)
+
+      if (moreOptions[id]) {
+        handleReset()
       }
-      else{
+      else {
         setMoreOptions((prevState) => ({
           ...prevState,
           [id]: !prevState[id],
         }));
         setCurrentOpenMoreOptions(true)
       }
-      
+
     }
-    else{
-    setMoreOptions((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-    setCurrentOpenMoreOptions(true)
-  }
+    else {
+      setMoreOptions((prevState) => ({
+        ...prevState,
+        [id]: !prevState[id],
+      }));
+      setCurrentOpenMoreOptions(true)
+    }
   };
 
-  const handleReset = () =>{
+  const handleReset = () => {
     setMoreOptions(false)
 
   }
-  
+
   //Sorting in Table
   // const sortInAscrendingOrder = currentItems.sort()
-  const sortItems = () =>{
+  const sortItems = () => {
     fetchData()
   }
 
   return (
     <div id="polls">
       <div className="col-12 mt-5">
-        <div className="card trending-poll overflow-auto border-4 border-white">
+        <div className="card trending-poll border-4 border-white">
           <div className="card-body">
-            <div className="card-title-header d-flex justify-content-between align-items-center">
+            <div className="card-title-header flex justify-between gap-6 md:gap-0 items-center flex-wrap">
               <h2 className="card-title all-polls-text-style">All Polls</h2>
-              <div className=" d-flex gap-4 align-items-center">
+              <div className="flex gap-4 justify-center flex-wrap items-center">
                 {/* <select
                   className="select-option my-2"
                   value={selectedOption}
@@ -294,7 +294,7 @@ const AllPolls = ({loader}) => {
                 {/* <Select className="select-option" options={options}/> */}
 
                 <form
-                  className="search-form d-flex align-items-center"
+                  className="search-form ml-12 flex items-center"
                   onClick={handleSubmit}
                 >
                   <button type="submit" title="Search">
@@ -309,18 +309,20 @@ const AllPolls = ({loader}) => {
                   />
                 </form>
 
-                <button
-                  className="border d-flex select-option gap-3 px-3"
-                  onClick={handleFilter}
-                >
-                  <span className="">
-                    <LuFilter />
-                  </span>
-                  Filters
-                </button>
-                <button className="border-color text-white d-flex select-option px-3">
-                  + Add Polls
-                </button>
+                <div className="flex items-center gap-4">
+                  <button
+                    className="border d-flex select-option gap-3 px-3"
+                    onClick={handleFilter}
+                  >
+                    <span className="">
+                      <LuFilter />
+                    </span>
+                    Filters
+                  </button>
+                  <button className="border-color text-white d-flex select-option px-3">
+                    + Add Polls
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -331,104 +333,104 @@ const AllPolls = ({loader}) => {
               isOpen={showFilterModal}
               onClose={handleCloseModal}
             />
-            <table className="table custom-thead datatable mt-4 w-100">
-              <thead className="text-center">
-                <tr className="poll-section">
-                  <th style={{ backgroundColor: "none" }}>
-                    <input
-                      type="checkbox"
-                      checked={selectAll}
-                      onChange={handleCheckbox}
-                    />
-                  </th>
-                  <th scope="col"></th>
-                  <th scope="col" className="d-flex align-items-center justify-content-center">Poll Title <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">Categories <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">Questions <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">Responses <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">CR <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">Created <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">Ending <RiExpandUpDownFill onClick={sortItems}/></th>
-                  <th scope="col">More Actions <RiExpandUpDownFill onClick={sortItems}/></th>
-                </tr>
-              </thead>
-              <tbody className="border-top-0 text-center">
-                {currentItems
-                  .filter((data) =>
-                    data.title.toLowerCase().includes(searchQuery)
-                  )
-                  .map((items, index) => {
-                    let createddate = new Date(items.createdAt);
-                    let endingDate = new Date(items.endingDate);
-                    return (
-                      <Fragment key={index}>
-                        <tr className="gap-row"></tr>
+            <div className="overflow-auto">
+              <table className="table custom-thead datatable mt-4 w-100">
+                <thead className="text-center">
+                  <tr className="poll-section">
+                    <th style={{ backgroundColor: "none" }}>
+                      <input
+                        type="checkbox"
+                        checked={selectAll}
+                        onChange={handleCheckbox}
+                      />
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Poll Title <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Categories <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Questions <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Responses <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> CR <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Created <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> Ending <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                    <th scope="col" ><div className="flex items-center justify-center gap-2 whitespace-nowrap"> More Actions <RiExpandUpDownFill onClick={sortItems} className="cursor-pointer" /></div></th>
+                  </tr>
+                </thead>
+                <tbody className="border-top-0 text-center">
+                  {currentItems
+                    .filter((data) =>
+                      data.title.toLowerCase().includes(searchQuery)
+                    )
+                    .map((items, index) => {
+                      let createddate = new Date(items.createdAt);
+                      let endingDate = new Date(items.endingDate);
+                      return (
+                        <Fragment key={index}>
+                          <tr className="gap-row"></tr>
 
-                        <tr
-                          className={`align-middle `}
-                          onMouseEnter={handleHover}
-                          onMouseLeave={handleLeave}
-                        >
-                          <th scope="row">
-                            {selectAll || showCheckbox ? (
+                          <tr
+                            className={`align-middle `}
+                            onMouseEnter={handleHover}
+                            onMouseLeave={handleLeave}
+                          >
+                            <th scope="row">
                               <input
                                 type="checkbox"
                                 onChange={handleCheckboxChange}
                               />
-                            ) : null}
-                          </th>
-                          <td>
-                            {items.play ? (
-                              <img src={pauseButton} alt="" />
-                            ) : (
-                              <img src={playButton} alt="" />
-                            )}
-                          </td>
-                          <td>{items.title}</td>
-                          <td>
-                            <span className="category-color">
-                              {items.categories}
-                            </span>
-                          </td>
-                          <td>{items.questions}</td>
-                          <td>{items.response}</td>
-                          <td>{items.cr}</td>
-                          <td>{createddate.toLocaleDateString()}</td>
-                          <td>{endingDate.toLocaleDateString()}</td>
-                          <td>
-                            <div className="more-options">
-                              <button
-                                className="border-0 bg-transparent dots "
-                                onClick={() => {
-                                  handleMoreOptions(items.id);
-                                }}
-                              >
-                                {/* <span className="dot"></span>
+                            </th>
+                            <td>
+                              {items.play ? (
+                                <img src={pauseButton} alt="" />
+                              ) : (
+                                <img src={playButton} alt="" />
+                              )}
+                            </td>
+                            <td>{items.title}</td>
+                            <td>
+                              <span className="category-color whitespace-nowrap">
+                                {items.categories}
+                              </span>
+                            </td>
+                            <td>{items.questions}</td>
+                            <td>{items.response}</td>
+                            <td>{items.cr}</td>
+                            <td>{createddate.toLocaleDateString()}</td>
+                            <td>{endingDate.toLocaleDateString()}</td>
+                            <td>
+                              <div className="more-options">
+                                <button
+                                  className="border-0 bg-transparent dots "
+                                  onClick={() => {
+                                    handleMoreOptions(items.id);
+                                  }}
+                                >
+                                  {/* <span className="dot"></span>
                             <span className="dot"></span>
                             <span className="dot"></span> */}
-                                . . .
-                              </button>
-                              {moreOptions[items.id] && (
-                                <div className="options-container">
-                                  <ul className="options-list">
-                                    <li>Download</li>
-                                    <li>Rename</li>
-                                    <li>Pause</li>
-                                    <li>Share</li>
-                                    <li>Analytics</li>
-                                    <li>Edit</li>
-                                    <li>Duplicate</li>
-                                  </ul>
-                                </div>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      </Fragment>
-                    );
-                  })}
-              </tbody>
-            </table>
+                                  . . .
+                                </button>
+                                {moreOptions[items.id] && (
+                                  <div className="options-container">
+                                    <ul className="options-list">
+                                      <li>Download</li>
+                                      <li>Rename</li>
+                                      <li>Pause</li>
+                                      <li>Share</li>
+                                      <li>Analytics</li>
+                                      <li>Edit</li>
+                                      <li>Duplicate</li>
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        </Fragment>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
 
             {/* </div> */}
             {/* Pagination */}
@@ -460,7 +462,7 @@ const AllPolls = ({loader}) => {
 
               <h4>{currentPage} - {Math.ceil(totalPosts / itemsPerPage)} of {itemsPerPage}</h4>
               <button className="border-0" onClick={handlePreviousPage} disabled={currentPage === 1}>&lt;</button>
-                <button className="border-0" onClick={handleNextPage} disabled={indexOfLastPage >= data.length}>&gt;</button>
+              <button className="border-0" onClick={handleNextPage} disabled={indexOfLastPage >= data.length}>&gt;</button>
 
             </div>
           </div>
