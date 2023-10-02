@@ -812,15 +812,15 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
               <div className="tab-pane" id="tab-3">
                 <div className="row">
                   <div className="col-lg-4 col-md-6">
-                    <div className="question-area">
-                      <div className="add-question d-flex justify-content-between align-items-center">
+                    <div className="question-area !w-full lg:!w-[25rem] left-side lg:pr-8">
+                      <div className="add-question flex justify-between items-center">
                         <h4>Poll Questions</h4>
                         <div className="plus-btn">
                           <i className="fa-solid fa-plus"></i>
                         </div>
                       </div>
 
-                      <div className="question d-flex justify-content-between align-items-center">
+                      <div className="question flex justify-between gap-2 items-center">
                         <div className="que-num">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -858,7 +858,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                           <label htmlFor="toggle-btn-schedule-daily-poll"></label>
                         </div>
                       </div>
-                      <div className="date-time-picker d-flex mt-5 gap-5">
+                      <div className="date-time-picker flex sm:flex-row flex-col mt-5 gap-5">
                         <div className="date-time d-flex flex-column">
                           <label htmlFor="start-date-time">
                             Start Date and Time

@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/img/full-logo.svg";
 
-const SideNav = () => {
-  const [toggleBar, setToggleBar] = useState(true);
-  const [showSideBar, setShowSideBar] = useState(false);
-
-
+const SideNav = ({toggleBar, setToggleBar, showSideBar, setShowSideBar}) => {
 
   const handleShowSideBar = (e) => {
     const sidebar = document.getElementById("sidebar");
@@ -79,12 +75,12 @@ const SideNav = () => {
     <div className={``}>
       <aside
         id="sidebar"
-        className={`sidebar ${toggleBar ? "" : "collapsed"}`}
+        className={`sidebar ${false ? "" : "collapsed"}`}
         onMouseMove={handleShowSideBar}
       >
         {/* // <aside id="sidebar" className={ `sidebar ${toggleBar ? "" : "collapsed"}`}> */}
         <div className="top d-flex align-items-center justify-content-between">
-          <NavLink to="/" className="logo d-flex align-items-center">
+          <NavLink to="/" className="w-24 h-full flex items-center">
             <img
               src={logo}
               alt="pollpe-logo"

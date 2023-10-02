@@ -1008,9 +1008,9 @@ h6 {
 }
 
 @media (max-width: 1199px) {
-    .sidebar {
+    /* .sidebar {
         left: -30rem;
-    }
+    } */
     /* .sidebar:hover {
         top: 0;
         left: 0;
@@ -1055,7 +1055,7 @@ h6 {
 } */
 
 .sidebar.collapsed {
-    width: 35rem;
+    width: 24rem;
 }
 
 .sidebar::-webkit-scrollbar {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Questions = ({ index, questionText,onDelete,onDuplicate, }) => {
+const Questions = ({ index, questionText, onDelete, onDuplicate, }) => {
   // const handleMoreOptions = () => {
   //   setShowMoreOptions(!showMoreOptions);
   // };
@@ -10,20 +10,20 @@ const Questions = ({ index, questionText,onDelete,onDuplicate, }) => {
 
   // console.log(modalref.current.contains)
 
-  
+
   console.log(showMoreOptions)
 
-  useEffect(()=>{
-    if(showMoreOptions){
+  useEffect(() => {
+    if (showMoreOptions) {
       document.addEventListener('click', handleClickOut)
     }
-    return ()=>{
+    return () => {
       document.removeEventListener('click', handleClickOut)
     }
-  },[showMoreOptions])
+  }, [showMoreOptions])
 
-  const handleClickOut = (e) =>{
-    if(!modalref.current.contains(e.target)){
+  const handleClickOut = (e) => {
+    if (!modalref.current.contains(e.target)) {
       setShowMoreOptions(false)
       // console.log(modalref.current)
     }
@@ -34,7 +34,7 @@ const Questions = ({ index, questionText,onDelete,onDuplicate, }) => {
     onDelete(index)
   }
 
-  const handleDuplicate = () =>{
+  const handleDuplicate = () => {
     onDuplicate(index)
   }
 
@@ -51,7 +51,7 @@ const Questions = ({ index, questionText,onDelete,onDuplicate, }) => {
 
   return (
     <div id="question-createpoll">
-      <div className="question d-flex justify-content-between align-items-center">
+      <div className="relative question d-flex justify-content-between align-items-center">
         <div className="que-num">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,17 +72,17 @@ const Questions = ({ index, questionText,onDelete,onDuplicate, }) => {
         <div className="que-w">
           <p>{questionText}</p>
         </div>
-          <div className="more-options" ref={modalref} onClick = {handleOptions}>
-            <i className="fa-solid fa-ellipsis-vertical"></i>
-          </div>
-          <div className="more-createpoll">
+        <div className="more-options" ref={modalref} onClick={handleOptions}>
+          <i className="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+        <div className="more-createpoll absolute top-4 right-10">
           {showMoreOptions && (
             <div className="more-for-createpoll">
               <p onClick={handleDelete}>Delete</p>
               <p onClick={handleDuplicate}>Duplicate</p>
             </div>
           )}
-          </div>
+        </div>
       </div>
     </div>
   );

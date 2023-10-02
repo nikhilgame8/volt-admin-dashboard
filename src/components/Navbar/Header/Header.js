@@ -4,16 +4,17 @@ import PollPelogo from "../../../assets/img/logo.svg";
 import themeMode from "../../../assets/img/theme-mode-icon.svg";
 import infoIcon from "../../../assets/img/info-icon.svg";
 import ProfileImg from "../../../assets/img/profile-img.jpg";
+import { NavLink } from "react-router-dom";
 
-const Header = ({getPollTitle}) => {
+const Header = ({ getPollTitle, toggleBar, setToggleBar, showSideBar, setShowSideBar }) => {
 
   const [searchBar, setSearchBar] = useState(false);
   const [pollName, setPollName] = useState('')
 
-    // useEffect(()=>{
+  // useEffect(()=>{
 
-    //   console.log(getPollTitle)
-    // },[getPollTitle])
+  //   console.log(getPollTitle)
+  // },[getPollTitle])
 
   const handleSearchBar = (e) => {
     setSearchBar(!searchBar);
@@ -22,6 +23,22 @@ const Header = ({getPollTitle}) => {
   // Handle Submit the form
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleToggle = () => {
+    const sidebar = document.getElementById("sidebar");
+    // if(showSideBar){
+    //   setToggleBar(true)
+    // }
+    // else{
+    //   setToggleBar((prevToggle) => !prevToggle);
+    // }
+
+    // sidebar.classList.add("handleSidebar");
+    document.getElementById("sidebar").style.width = "25rem"
+    document.body.classList.toggle("toggle-sidebar");
+    setToggleBar(!toggleBar)
+    console.log("clicked");
   };
 
 
@@ -39,22 +56,22 @@ const Header = ({getPollTitle}) => {
         <div className="d-flex align-items-center justify-content-between">
 
           <h4>{getPollTitle.getPollTitle}</h4>
-          {/* <NavLink to="/" className="logo d-flex align-items-center">
+          <NavLink to="/" className="w-24 h-full flex items-center">
             <img
               src={logo}
               alt="pollpe-logo"
-              className="img-fluid d-lg-block d-none"
+              className="img-fluid d-lg-block d-block"
             />
-            <img
+            {/* <img
               src={PollPelogo}
               alt="pollpe-logo"
               className="img-fluid d-lg-none d-block"
-            />
+            /> */}
           </NavLink>
 
-          <div className="toggle-sidebar-btn"  onClick={handleToggle}>
+          <div className="toggle-sidebar-btn" onClick={handleToggle}>
             <i className="bi bi-list"></i>
-          </div> */}
+          </div>
 
           {/* <!-- Dot Icon --> */}
 
@@ -67,9 +84,8 @@ const Header = ({getPollTitle}) => {
         {/* <!-- End Logo --> */}
 
         <div
-          className={`search-bar ${
-            searchBar ? "search-bar-show" : ""
-          } ms-lg-auto`}
+          className={`search-bar ${searchBar ? "search-bar-show" : ""
+            } ms-lg-auto`}
         >
           <form
             className="search-form d-flex align-items-center"
