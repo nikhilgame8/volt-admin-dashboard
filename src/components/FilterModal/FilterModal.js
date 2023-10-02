@@ -95,7 +95,7 @@ const FilterModal = ({ data, allData, setData, isOpen, onClose }) => {
   };
 
   return (
-    <div id="filter" className={`modal${isOpen ? "show" : ""}`}>
+    <div id="filter" className={`modal ${isOpen ? "show" : ""}`}>
       <div className="dialog top-[25%] md:top-[10%] lg:top-0 right-0 md:right-[10%] modal-dialog" ref={modalRef}>
         <div className="modal-content">
           <div className="modal-header">
