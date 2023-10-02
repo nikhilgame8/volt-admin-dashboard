@@ -78,9 +78,9 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
   };
 
   //Yes No Add the question
-  useEffect(()=>{
+  useEffect(() => {
     setShowCreateModal(true)
-  },[])
+  }, [])
 
   const handleAddYesNo = () => {
     const newQuestionText = "Your Question will show here";
@@ -323,7 +323,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                       </button>
                     </div>
                     <div className="top-question">
-                      {questions.map((questionText, index) => {
+                      {questions?.map((questionText, index) => {
                         return (
                           <Questions
                             key={index}
@@ -331,8 +331,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                             questionText={questionText}
                             onDelete={() => handleDeleteQuestions(index)}
                             onDuplicate={() => handleDuplicateQuestions(index)}
-                            // pollName={pollName}
-                            // setPollName={setPollName}
+                          // pollName={pollName}
+                          // setPollName={setPollName}
                           />
                         );
                       })}
@@ -415,12 +415,12 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                       onChange={(e) =>
                                         setChoiceA(e.target.value)
                                       }
-                                      // onInput={e=>console.log(e.target.innerText)}
+                                    // onInput={e=>console.log(e.target.innerText)}
                                     />
                                     <div
                                       contentEditable
                                       className="form-control choice"
-                                      // onInput={e=>setChoiceA(e.target.innerText)}
+                                    // onInput={e=>setChoiceA(e.target.innerText)}
                                     >
                                       {choiceA}
                                     </div>
@@ -440,7 +440,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                     <div
                                       contentEditable
                                       className="form-control choice"
-                                      // onInput={(e)=>setChoiceB(e.target.innerText)}
+                                    // onInput={(e)=>setChoiceB(e.target.innerText)}
                                     >
                                       {choiceB}
                                     </div>
@@ -461,8 +461,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                     type="text"
                                     placeholder="1 &#10144; Type Your Question Here"
                                     className="form-control question"
-                                    // value={singleSelection}
-                                    // onChange={e => setSingleSelection(e.target.value)}
+                                  // value={singleSelection}
+                                  // onChange={e => setSingleSelection(e.target.value)}
                                   />
                                 </div>
                                 <input
@@ -472,7 +472,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                 />
 
                                 <div className="choice-box mt-5">
-                                  {singleSelectionChoice.map((choice) => {
+                                  {singleSelectionChoice?.map((choice) => {
                                     return (
                                       <div
                                         className="input-group mt-4"
@@ -533,8 +533,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                     type="text"
                                     placeholder="1 &#10144; Type Your Question Here"
                                     className="form-control question"
-                                    // value={singleSelection}
-                                    // onChange={e => setSingleSelection(e.target.value)}
+                                  // value={singleSelection}
+                                  // onChange={e => setSingleSelection(e.target.value)}
                                   />
                                 </div>
                                 <input
@@ -544,7 +544,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                 />
 
                                 <div className="choice-box mt-5">
-                                  {multiSelectionChoice.map((choice) => {
+                                  {multiSelectionChoice?.map((choice) => {
                                     return (
                                       <div
                                         className="input-group mt-4"
@@ -605,8 +605,8 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                     type="text"
                                     placeholder="1 &#10144; Type Your Question Here"
                                     className="form-control question"
-                                    // value={singleSelection}
-                                    // onChange={e => setSingleSelection(e.target.value)}
+                                  // value={singleSelection}
+                                  // onChange={e => setSingleSelection(e.target.value)}
                                   />
                                 </div>
                                 <input
@@ -623,7 +623,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                                       id=""
                                       onChange={handleOptionChange}
                                     >
-                                      {option.map((text) => {
+                                      {option?.map((text) => {
                                         return (
                                           <option
                                             className=""
@@ -780,7 +780,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
                         <div className="content-box settings mt-3">
                           <div className="option-type mt-3">
                             <div className="option-type-header category-section-wrap ml-2 d-flex align-items-center">
-                              {selectedTags.map((selected, index) => {
+                              {selectedTags?.map((selected, index) => {
                                 return (
                                   <div key={index} className="category-section">
                                     <div>{selected}</div>
@@ -805,7 +805,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
               {/* <div className="tab-pane active show" id="tab-2"> */}
               <div className="tab-pane show" id="tab-2">
 
-              <Targeting targettingQuestions={questions}/>
+                <Targeting targettingQuestions={questions} />
               </div>
               {/* <!-- End 2nd Tab --> */}
 
@@ -945,7 +945,7 @@ const CreatePoll = ({ loader, handlePollTitle }) => {
               handlePollTitle={handlePollTitle}
               handleAddMultipleSelection={handleAddMultipleSelection}
               handleAddDropdownSelection={handleAddDropdownSelection}
-              // onRemoveTag={(e)=>onRemoveTag(e)}
+            // onRemoveTag={(e)=>onRemoveTag(e)}
             />
           </div>
         </section>

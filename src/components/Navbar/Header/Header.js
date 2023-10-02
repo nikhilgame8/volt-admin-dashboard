@@ -56,11 +56,11 @@ const Header = ({ getPollTitle, toggleBar, setToggleBar, showSideBar, setShowSid
         <div className="d-flex align-items-center justify-content-between">
 
           <h4>{getPollTitle.getPollTitle}</h4>
-          <NavLink to="/" className="w-24 h-full flex items-center">
+          <NavLink to="/" className="w-24 h-full hidden lg:flex items-center">
             <img
               src={logo}
               alt="pollpe-logo"
-              className="img-fluid d-lg-block d-block"
+              className="img-fluid d-lg-block d-none"
             />
             {/* <img
               src={PollPelogo}

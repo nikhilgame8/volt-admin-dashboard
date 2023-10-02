@@ -84,7 +84,7 @@ const SideNav = ({toggleBar, setToggleBar, showSideBar, setShowSideBar}) => {
             <img
               src={logo}
               alt="pollpe-logo"
-              className="img-fluid d-lg-block d-none"
+              className="img-fluid"
             />
           </NavLink>
           <div className="toggle-sidebar-btn" onClick={handleToggle}>
@@ -123,7 +123,7 @@ const SideNav = ({toggleBar, setToggleBar, showSideBar, setShowSideBar}) => {
             </a>
             <ul
               id="componentsA-nav"
-              className="nav-content  show"
+              className="nav-content !visible show"
               data-bs-parent="#sidebar-nav"
             >
               <li>
@@ -175,7 +175,7 @@ const SideNav = ({toggleBar, setToggleBar, showSideBar, setShowSideBar}) => {
             </a>
             <ul
               id="ComponentsB-nav"
-              className="nav-content show"
+              className="nav-content !visible show"
               data-bs-parent="#sidebar-nav"
             >
               <li>
