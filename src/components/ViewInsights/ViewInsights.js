@@ -35,7 +35,7 @@ const ViewInsights = ({loader}) => {
     <div>
       <main id="main" className="main">
         <section className="section dashboard view-insight">
-          <div className="view-insight-header d-flex justify-content-between align-items-center">
+          <div className="view-insight-header flex justify-between items-center flex-wrap gap-6">
             <div className="questions d-flex justify-content-between align-items-center gap-4">
               <div className="question d-flex align-items-center">
                 <div>
@@ -85,7 +85,7 @@ const ViewInsights = ({loader}) => {
               </div>
             </div>
 
-            <div className="action-btns d-flex justify-content-evenly align-items-center gap-3">
+            <div className="action-btns flex justify-evenly flex-wrap items-center gap-3">
               <div className="carousel-que d-flex align-items-center gap-2">
                 <div className="icon">
                   <i className="fa-solid fa-chevron-left"></i>
@@ -95,19 +95,19 @@ const ViewInsights = ({loader}) => {
                   <i className="fa-solid fa-chevron-right"></i>
                 </div>
               </div>
-              <button className="action-btn pause">
+              <button className="action-btn pause shrink-0">
                 <i className="fa-regular fa-circle-pause"></i>
                 <span>&nbsp; Pause</span>
               </button>
-              <button className="action-btn edit">
+              <button className="action-btn edit shrink-0">
                 <i className="fa-solid fa-pen-to-square"></i>
                 <span>&nbsp; Edit</span>
               </button>
-              <button className="action-btn download">
+              <button className="action-btn download shrink-0">
                 <i className="fa-solid fa-file-arrow-down"></i>
                 <span> &nbsp; Export CSV</span>
               </button>
-              <button className="action-btn back">
+              <button className="action-btn back shrink-0">
                 <i className="fa-solid fa-chevron-left"></i>
                 <span> &nbsp; Go Back</span>
               </button>
