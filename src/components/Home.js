@@ -1124,83 +1124,85 @@ const Home = ({ loader }) => {
               {/* <!-- End Third Row --> */}
 
               <div className="col-12 mt-5">
-                <div className="card trending-polls overflow-auto">
+                <div className="card trending-polls">
                   <div className="card-body">
-                    <div className="card-title-header d-flex justify-content-between align-items-center">
+                    <div className="card-title-header flex justify-between items-center">
                       <h2 className="card-title">Recent Activity</h2>
                       <a href="/" className="">
                         View All
                       </a>
                     </div>
 
-                    <table className="table datatable mt-4">
-                      <thead className="">
-                        <tr>
-                          <th>Date/ Time</th>
-                          <th scope="col">Admin/ User ID</th>
-                          <th scope="col">Activity Type</th>
-                          <th scope="col">Activity Description</th>
-                          <th scope="col">Poll/ User Associated</th>
-                        </tr>
-                      </thead>
-                      <tbody className="border-top-0">
-                        <tr>
-                          <td>12-June-2023 at 4:30 PM</td>
-                          <td>Anurag</td>
-                          <td>Poll Creation</td>
-                          <td>"Ab kya krana chahiye Poll created"</td>
-                          <td>Poll :- 4353453</td>
-                        </tr>
+                    <div className="overflow-auto">
+                      <table className="table datatable mt-4">
+                        <thead className="">
+                          <tr>
+                            <th><div className="flex items-center justify-center"> Date/ Time</div></th>
+                            <th scope="col"><div className="flex items-center justify-center"> Admin/ User ID</div></th>
+                            <th scope="col"><div className="flex items-center justify-center"> Activity Type</div></th>
+                            <th scope="col"><div className="flex items-center justify-center"> Activity Description</div></th>
+                            <th scope="col"><div className="flex items-center justify-center"> Poll/ User Associated</div></th>
+                          </tr>
+                        </thead>
+                        <tbody className="border-top-0">
+                          <tr>
+                            <td className="whitespace-nowrap">12-June-2023 at 4:30 PM</td>
+                            <td>Anurag</td>
+                            <td>Poll Creation</td>
+                            <td>"Ab kya krana chahiye Poll created"</td>
+                            <td>Poll :- 4353453</td>
+                          </tr>
 
-                        <tr>
-                          <td>13-June-2023 at 2:21 PM</td>
-                          <td>Amar</td>
-                          <td>Poll Modification</td>
-                          <td>"Ab kya karna to ab kre modified"</td>
-                          <td>User :- 763732</td>
-                        </tr>
+                          <tr>
+                            <td className="whitespace-nowrap">13-June-2023 at 2:21 PM</td>
+                            <td>Amar</td>
+                            <td>Poll Modification</td>
+                            <td>"Ab kya karna to ab kre modified"</td>
+                            <td>User :- 763732</td>
+                          </tr>
 
-                        <tr>
-                          <td>13-June-2023 at 8:34 AM</td>
-                          <td>Anurag</td>
-                          <td>User Modification</td>
-                          <td>Id 35653 user name modified</td>
-                          <td>Poll :- 672275</td>
-                        </tr>
+                          <tr>
+                            <td className="whitespace-nowrap">13-June-2023 at 8:34 AM</td>
+                            <td>Anurag</td>
+                            <td>User Modification</td>
+                            <td>Id 35653 user name modified</td>
+                            <td>Poll :- 672275</td>
+                          </tr>
 
-                        <tr>
-                          <td>14-June-2023 at 2:03 PM</td>
-                          <td>Rakesh</td>
-                          <td>Poll Creation</td>
-                          <td>Poll Modification</td>
-                          <td>User :- 9836302</td>
-                        </tr>
+                          <tr>
+                            <td className="whitespace-nowrap">14-June-2023 at 2:03 PM</td>
+                            <td>Rakesh</td>
+                            <td>Poll Creation</td>
+                            <td>Poll Modification</td>
+                            <td>User :- 9836302</td>
+                          </tr>
 
-                        <tr>
-                          <td>15-June-2023 at 11:20 AM</td>
-                          <td>Anurag</td>
-                          <td>Poll Modification</td>
-                          <td>Poll Creation</td>
-                          <td>Poll :- 3673822</td>
-                        </tr>
+                          <tr>
+                            <td className="whitespace-nowrap">15-June-2023 at 11:20 AM</td>
+                            <td>Anurag</td>
+                            <td>Poll Modification</td>
+                            <td>Poll Creation</td>
+                            <td>Poll :- 3673822</td>
+                          </tr>
 
-                        <tr>
-                          <td>15-June-2023 at 2:20 PM</td>
-                          <td>Anurag</td>
-                          <td>Poll Modification</td>
-                          <td>Poll Creation</td>
-                          <td>Poll :- 9920839</td>
-                        </tr>
+                          <tr>
+                            <td className="whitespace-nowrap">15-June-2023 at 2:20 PM</td>
+                            <td>Anurag</td>
+                            <td>Poll Modification</td>
+                            <td>Poll Creation</td>
+                            <td>Poll :- 9920839</td>
+                          </tr>
 
-                        <tr>
-                          <td>15-June-2023 at 6:49 PM</td>
-                          <td>Anurag</td>
-                          <td>Poll Modification</td>
-                          <td>Poll Creation</td>
-                          <td>User :- 6892001</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          <tr>
+                            <td className="whitespace-nowrap">15-June-2023 at 6:49 PM</td>
+                            <td>Anurag</td>
+                            <td>Poll Modification</td>
+                            <td>Poll Creation</td>
+                            <td>User :- 6892001</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
